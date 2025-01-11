@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Fiscal</title>
+</head>
+
+<body>
+    <h1>Nota Fiscal</h1>
+    <label for="codigo">Código do Produto:</label>
+    <input type="number" id="codigo">
+    <button id="buscar">Buscar Produto</button>
+
+    <h2>Produtos</h2>
+    <ul id="produtos-lista"></ul>
+    <h2 id="descricao">Descrição: </h2>
+    
+    <p id="valor">Valor: </p>
+
+    <h3>Total: R$ <span id="valor-total">0.00</span></h3>
+
+    <script>
+        const codigoInput = document.getElementById('codigo');
+        const buscarButton = document.getElementById('buscar');
+        const descricaoElement = document.getElementById('descricao');
+        const valorElement = document.getElementById('valor');
+        let valorTotal = 0; // Variável para acumular o valor total
+
+        // Focar automaticamente no campo de código ao carregar a página
+        window.onload = () => {
+            codigoInput.focus();
+        };
+
+        // Função para buscar o produto
+        async function buscarProduto() {
+            const codigo = codigoInput.value;
+            const produto = await window.api.buscarProduto(codigo);
+
+            if (produto) {
+                descricaoElement.textContent = `Descrição: ${produto.descricao}`;
+                valorElement.textContent = `Valor: R$ ${produto.valor}`;
+
+                // Exibir o produto na lista e somar ao total
+                const produtosLista = document.getElementById("produtos-lista");
+                const item = document.createElement("li");
+                item.textContent = `Descrição: ${produto.descricao}, Valor: R$ ${produto.valor}`;
+                produtosLista.appendChild(item);
+
+                valorTotal += parseFloat(produto.valor); // Acumula o valor do produto
+                document.getElementById("valor-total").textContent = valorTotal.toFixed(2); // Atualiza o total
+            } else {
+                descricaoElement.textContent = 'Descrição: Produto não encontrado';
+                valorElement.textContent = '';
+            }
+        }
+
+        // Quando pressionar "Enter", buscar o produto
+        codigoInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                buscarProduto();
+            }
+        });
+
+        // Quando clicar no botão de buscar, também chamar a função de busca
+        buscarButton.addEventListener('click', buscarProduto);
+    </script>
+</body>
+
+</html>

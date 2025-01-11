@@ -1,0 +1,20 @@
+# Ignorar node_modules (pasta de dependências)
+node_modules/
+*.exe
+# Ignorar a pasta de build do Electron
+/dist/
+
+# Ignorar arquivos de logs
+*.log
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de configuração do IDE
+.vscode/
+.idea/
+
+# Ignorar arquivos temporários de execução
+*.tmp
+*.swp
