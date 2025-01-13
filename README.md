@@ -43,3 +43,89 @@ O **App Gerador de Nota Fiscal** é um projeto desenvolvido em Electron.js com i
 - Autenticação de usuários para segurança e personalização.
 - Implementação de relatórios com estatísticas de vendas.
 
+# App Gerador de Nota Fiscal
+
+Este é um aplicativo simples e funcional que permite gerenciar produtos e gerar notas fiscais com cálculo automático do total de compras. O projeto utiliza **Electron.js** para criar uma interface desktop e **MySQL** como banco de dados para armazenar os produtos.
+
+## Recursos do Projeto
+
+- **Busca de Produtos**: Pesquise produtos no banco de dados utilizando códigos.
+- **Lista de Produtos Adicionados**: Exibe os produtos adicionados na nota fiscal em uma lista.
+- **Cálculo Automático do Total**: Soma automaticamente os valores dos produtos adicionados.
+- **Interface Intuitiva**: Interface simples e responsiva para facilitar a usabilidade.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Electron.js**: Cria aplicações desktop multiplataforma com tecnologias web.
+- **MySQL**: Gerenciamento de banco de dados relacional.
+- **Node.js**: Ambiente de execução para o backend do aplicativo.
+- **HTML/CSS/JavaScript**: Desenvolvimento da interface do usuário.
+
+---
+
+## Instalação e Configuração
+
+### 1. Clonar o Repositório
+
+```bash
+$ git clone https://github.com/barretodf/app-gerador-de-nota-fiscal.git
+$ cd app-gerador-de-nota-fiscal
+```
+
+### 2. Instalar Dependências
+
+Certifique-se de que o Node.js está instalado no sistema.
+
+```bash
+$ npm install
+```
+
+### 3. Configurar o Banco de Dados
+
+1. Crie um banco de dados MySQL chamado `notas_fiscais`.
+2. Execute o script SQL localizado em `scripts/setup.sql` para criar a tabela de produtos.
+3. Atualize o arquivo `db.js` com as credenciais do banco de dados:
+
+```javascript
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'seu_usuario',
+    password: 'sua_senha',
+    database: 'notas_fiscais'
+});
+```
+
+### 4. Rodar o App
+
+```bash
+$ npm start
+```
+
+O aplicativo será iniciado e estará disponível.
+
+---
+
+## Funcionalidades Detalhadas
+
+### Busca de Produtos
+- Digite o código do produto e pressione **Enter** ou clique em "Buscar Produto".
+- O produto será adicionado à lista se encontrado no banco de dados.
+
+### Listagem de Produtos
+- Os produtos adicionados aparecem em uma lista com sua descrição e preço.
+- Cada produto pode ser visualizado com detalhes.
+
+### Soma Automática
+- Ao adicionar novos produtos, o total é recalculado automaticamente e exibido na interface.
+
+---
+
+## Contato
+
+Para mais informações ou dúvidas, entre em contato:
+- **E-mail**: edsb1981@gmail.com
+- **GitHub**: [barretodf](https://github.com/barretodf)
+
+
